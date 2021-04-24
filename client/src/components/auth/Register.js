@@ -1,4 +1,6 @@
 import React , {Fragment ,useState} from 'react'
+// import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export const Register = () => {
     const[formData, setFormData] = useState({
@@ -12,15 +14,34 @@ export const Register = () => {
 
     const onChange =  e => setFormData({ ...formData,[e.target.name]: e.target.value});
 
-    const onSubmit = e =>{
+    const onSubmit = async e =>{
         e.preventDefault();
         if(password !== password2) {
             console.log('Passwords do not match');
         }
         else {
-            console.log(formData);
+            // const newUSer = {
+            //   name,
+            //   email,
+            //   password,
+            // } 
+            // try {
+            //   const config = {
+            //     headers : {
+            //       'Content-Type':'application/json'
+            //     }
+            //   }
+
+            //   const body = JSON.stringify(newUSer);
+            //   const res = await axios.post('./api/users',body , config);
+            //   console.log(res.data);
+            // }
+            // catch(err) {
+            //   console.errors(err.response.data);
+            // }
+            console.log('SUCCESS');
         }
-    }
+    };
   
     return (
         <Fragment>
@@ -62,14 +83,13 @@ export const Register = () => {
               name="password2"
               value ={password2} 
               onChange={e => onChange(e)}
-              required
               minLength="6"
             />
           </div>
           <input type="submit" className="btn btn-primary" value="Register" />
         </form>
         <p className="my-1">
-          Already have an account? <a href="login.html">Sign In</a>
+          Already have an account? <Link to="/login">Sign In</Link>
         </p>
         </Fragment>
     )
